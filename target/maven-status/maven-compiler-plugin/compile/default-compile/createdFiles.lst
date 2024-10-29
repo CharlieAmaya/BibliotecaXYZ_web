@@ -1,0 +1,12 @@
+Persistencia\exceptions\IllegalOrphanException.class
+Logica\Controladora.class
+com\mycompany\bibliotecaxyz_web\resources\JakartaEE11Resource.class
+Persistencia\exceptions\NonexistentEntityException.class
+Persistencia\EstudianteJpaController.class
+Persistencia\exceptions\PreexistingEntityException.class
+Persistencia\ControladoraPersistencia.class
+com\mycompany\bibliotecaxyz_web\JakartaRestConfiguration.class
+servlets\SVEstudiantes.class
+servlets\SVEditar.class
+Logica\Estudiante.class
+servlets\SVEliminar.class
