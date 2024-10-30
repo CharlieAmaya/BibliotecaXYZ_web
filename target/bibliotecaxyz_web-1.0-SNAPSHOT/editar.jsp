@@ -22,6 +22,7 @@
             <p><label>correo estudiante</label><input type="text" name="correo" value="<%=estu.getCorreo()%>"></p>
             <p><label>num contacto estudiante</label><input type="text" name="num_contacto" value="<%=estu.getNum_contacto()%>"></p>
             <button type="submit">Guardar</button>
+            <button onclick="location.href = 'index.jsp'">Estudiante</button>
         </form>
     </body>
 </html>

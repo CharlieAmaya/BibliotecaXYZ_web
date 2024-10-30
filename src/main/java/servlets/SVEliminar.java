@@ -40,6 +40,7 @@ public class SVEliminar extends HttpServlet {
             throws ServletException, IOException {
         int id_eliminar = Integer.parseInt(request.getParameter("id_estudiante"));
         control.borrarEstudiante(id_eliminar);
+        response.sendRedirect("index.jsp");
         
     }
 

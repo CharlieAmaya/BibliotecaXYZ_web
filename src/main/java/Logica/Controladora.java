@@ -15,6 +15,8 @@ public class Controladora {
 
     ControladoraPersistencia controlPersis = new ControladoraPersistencia();
 
+    // Estudiante
+    
     public void crearEstudiante(Estudiante estu) {
         controlPersis.crearEstudiante(estu);
     }
@@ -37,4 +39,30 @@ public class Controladora {
     
     }
 
+    
+    // Libro
+    
+    public void crearLibro(Libro Lib) {
+        controlPersis.crearLibro(Lib);
+    }
+
+    public List<Libro> traerLibros() {
+        return controlPersis.traerLibros();
+    }
+
+    public void borrarLibro(int id_eliminar) {
+        controlPersis.borrarLibro(id_eliminar);
+    }
+
+    public Libro traerLibro(int id_editar) {
+        return controlPersis.traerLibro(id_editar);
+        
+    }
+
+    public void editarLibro(Libro Lib) {
+    controlPersis.editarLibro (Lib); 
+    
+    }
+
+    
 }
