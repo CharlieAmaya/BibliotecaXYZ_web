@@ -15,6 +15,7 @@
     <body>
         <% Libro lib = (Libro) request.getSession().getAttribute("libEditar"); %>
         <h1>Datos del Libro</h1>
+        <button onclick="location.href = 'index.jsp'">Menu</button>
         <form action="SVEditar_libro" method="POST">
 
             
@@ -26,7 +27,7 @@
             <p><label>Inventario </label><input type="text" name="inventario"value="<%=lib.getInventario()%>"></p>
             <p><label>Editorial </label><input type="text" name="editorial"value="<%=lib.getEditorial()%>"></p>
             <button type="submit">Guardar</button>
-            <button onclick="location.href = 'libro.jsp'">Libros</button>
+          
         </form>
     </body>
 </html>

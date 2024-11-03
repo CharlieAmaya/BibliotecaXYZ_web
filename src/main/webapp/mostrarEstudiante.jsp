@@ -17,21 +17,45 @@
     </head>
     <body>
         <h1>Lista de Estudiantes</h1>
+        <button onclick="location.href = 'index.jsp'">Menu</button>
         <%
             List<Estudiante> listaEstudiantes = (List) request.getSession().getAttribute("listaEstudiantes");
             int cont = 1;
             for (Estudiante estu : listaEstudiantes) {%>
 
-        <p><b>Estudiante # <%=cont%></b></p>
-        <p>ID : <%=estu.getId_estudiante()%></p>
-        <p>Nombre : <%=estu.getNombre()%></p>
-        <p>Edad : <%=estu.getEdad()%></p>
-        <p>Correo : <%=estu.getCorreo()%></p>
-        <p>Numero de Contacto<%=estu.getNum_contacto()%></p>
-        <p>--------------------------</p>
+        <table style="border: 1px solid black; border-collapse: collapse;"> 
+            <thead> 
+                <tr> 
+                    <th style="border: 1px solid black;">ID</th> 
+                    <th style="border: 1px solid black;">Nombre</th> 
+                    <th style="border: 1px solid black;">Edad</th> 
+                    <th style="border: 1px solid black;">Correo</th> 
+                    <th style="border: 1px solid black;">Numero de Contacto</th> 
+                </tr> 
+            </thead> 
+            <tbody> 
+                <tr> 
+                    <td style="border: 1px solid black;"><%=estu.getId_estudiante()%></td> 
+                    <td style="border: 1px solid black;"><%=estu.getNombre()%></td> 
+                    <td style="border: 1px solid black;"><%=estu.getEdad()%></td> 
+                    <td style="border: 1px solid black;"><%=estu.getCorreo()%></td> 
+                    <td style="border: 1px solid black;"><%=estu.getNum_contacto()%></td> 
+                    <td style="display:flex; width: 230px">
+                        <form name="eliminar" action="SVEliminar_Estudiante" method="POST">
+                            <button type="submit">Eliminar</button>
+                            <input type="hidden" name="id_estudiante" value="<%=estu.getId_estudiante()%>"><!-- Enviar datos a eliminar -->
+                        </form> 
+                        <form name="editar" action="SVEditar_Estudiante" method="GET">
+                            <button type="submit">Editar</button>
+                            <input type="hidden" name="id_estudianteEdit" value="<%=estu.getId_estudiante()%>"><!-- Enviar datos a editar -->
+                        </form> 
+                    </td> 
+                </tr> <!-- Agrega más filas aquí -->
+            </tbody>
+        </table>
         <% cont = cont + 1;
             }%>
-        <button onclick="location.href = 'index.jsp'">Estudiante</button>
+
 
     </body>
 </html>

@@ -63,6 +63,52 @@ public class Controladora {
     controlPersis.editarLibro (Lib); 
     
     }
+    
+    // Pedido Nuevo Libro
+    
+    public void crearPedidoNuevoLibro(Pedido_nuevolibro pNL) {
+        controlPersis.crearPedidoNuevoLibro(pNL);
+    }
 
+    public List<Pedido_nuevolibro> traerPedidoNuevoLibros() {
+        return controlPersis.traerPedidoNuevoLibros();
+    }
+
+    public void borrarPedidoNuevoLibro(int id_eliminar) {
+        controlPersis.borrarPedidoNuevoLibro(id_eliminar);
+    }
+
+    public Pedido_nuevolibro traerPedidoNuevoLibro(int id_editar) {
+        return controlPersis.traerPedidoNuevoLibro(id_editar);
+        
+    }
+
+    public void editarPedidoNuevoLibro(Pedido_nuevolibro pNL) {
+    controlPersis.editarPedidoNuevoLibro(pNL); 
+    
+    }
+// Prestamo
+    
+    public void crearPrestamo(Prestamo prest) {
+        controlPersis.crearPrestamo(prest);
+    }
+
+    public List<Prestamo> traerPrestamos() {
+        return controlPersis.traerPrestamos();
+    }
+
+    public void borrarPrestamo(int id_eliminar) {
+        controlPersis.borrarPrestamo(id_eliminar);
+    }
+
+    public Prestamo traerPrestamo(int id_editar) {
+        return controlPersis.traerPrestamo(id_editar);
+        
+    }
+
+    public void editarPrestamo(Prestamo prest) {
+    controlPersis.editarPrestamo(prest);
+    
+    }
     
 }

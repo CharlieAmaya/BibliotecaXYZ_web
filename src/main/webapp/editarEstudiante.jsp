@@ -15,14 +15,15 @@
     <body>
         <% Estudiante estu = (Estudiante) request.getSession().getAttribute("estuEditar"); %>
         <h1>Datos del estudiante</h1>
-        <form action="SVEditar" method="POST">
+        <button onclick="location.href = 'index.jsp'">Menu</button>
+        <form action="SVEditar_Estudiante" method="POST">
 
             <p><label>nombre estudiante</label><input type="text" name="nombre" value="<%=estu.getNombre()%>"></p>
             <p><label>edad estudiante</label><input type="text" name="edad" value="<%=estu.getEdad()%>"></p>
             <p><label>correo estudiante</label><input type="text" name="correo" value="<%=estu.getCorreo()%>"></p>
             <p><label>num contacto estudiante</label><input type="text" name="num_contacto" value="<%=estu.getNum_contacto()%>"></p>
             <button type="submit">Guardar</button>
-            <button onclick="location.href = 'index.jsp'">Estudiante</button>
+            
         </form>
     </body>
 </html>

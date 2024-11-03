@@ -12,7 +12,7 @@
         <title>Formulario Libro</title>
     </head>
     <body>
-        <button onclick="location.href = 'index.jsp'">Estudiante</button>
+        <button onclick="location.href = 'index.jsp'">Menu</button>
 
         <h1>Datos del Libro</h1>
         <form action="SVLibro" method="POST">
@@ -34,18 +34,5 @@
 
         </form>
 
-        <h1>Eliminar Libro</h1>
-        <p>Ingrese el ID del libro a eliminar</p>
-        <form action="SVEliminar_libro" method="POST">
-            <p><label>ID Libro </label><input type="number" name="id_libro"></p>
-            <button type="submit">Eliminar</button>
-        </form>
-
-        <h1>Editar Libro</h1>
-        <p>Ingrese el ID del Libro a editar</p>
-        <form action="SVEditar_libro" method="GET">
-            <p><label>ID Libro </label><input type="text" name="id_libroEdit"></p>
-            <button type="submit">Editar</button>
-        </form>
     </body>
 </html>

@@ -52,25 +52,17 @@ public class SVLibro extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        String formato = "yyyy-MM-dd";
+
         //String id_libro = request.getParameter("id_libro");
         String nombre = request.getParameter("nombre");
         String autor = request.getParameter("autor");
         String idioma = request.getParameter("idioma");
         String genero = request.getParameter("genero");
-        Date fecha_publicacion = null;
+        Date fecha_publicacion = SVPrestamo.convertirStringADate(request.getParameter("fecha_public"), formato);
 
-        String stringfecha_public = request.getParameter("fecha_public");
         int inventario = Integer.parseInt(request.getParameter("inventario"));
         String editorial = request.getParameter("editorial");
-
-        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            fecha_publicacion = formato.parse(stringfecha_public);
-            response.getWriter().println("Fecha convertida");
-        } catch (ParseException e) {
-            e.printStackTrace();
-            response.getWriter().println("Error al convertir la fecha.");
-        }
 
         Libro Lib = new Libro();
 

@@ -30,12 +30,10 @@ public class LibroJpaController implements Serializable {
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
-    
-    
+
     public LibroJpaController() {
         emf = Persistence.createEntityManagerFactory("bibliotecaxyztest");
     }
-
 
     public void create(Libro libro) {
         EntityManager em = null;
@@ -140,5 +138,5 @@ public class LibroJpaController implements Serializable {
             em.close();
         }
     }
-    
+
 }

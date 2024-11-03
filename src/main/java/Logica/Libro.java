@@ -4,43 +4,64 @@
  */
 package Logica;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
  * @author amaya
  */
 @Entity
+@Table(name = "libro")
 public class Libro implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_libro;
     private String nombre;
     private String autor;
     private String idioma;
     private String genero;
-    private Date fecha_publicacion;
     private int inventario;
     private String editorial;
+    @Temporal(TemporalType.DATE)
+    private Date fecha_publicacion;
+
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "lib", fetch = FetchType.EAGER)
+    private List<Prestamo> listaPrestamo;
 
     public Libro() {
     }
 
-    public Libro(int id_libro, String nombre, String autor, String idioma, String genero, Date fecha_publicacion, int inventario, String editorial) {
+    public Libro(int id_libro, String nombre, String autor, String idioma, String genero, int inventario, String editorial, Date fecha_publicacion, List<Prestamo> listaPrestamo) {
         this.id_libro = id_libro;
         this.nombre = nombre;
         this.autor = autor;
         this.idioma = idioma;
         this.genero = genero;
-        this.fecha_publicacion = fecha_publicacion;
         this.inventario = inventario;
         this.editorial = editorial;
+        this.fecha_publicacion = fecha_publicacion;
+        this.listaPrestamo = listaPrestamo;
+    }
+
+    public List<Prestamo> getListaPrestamo() {
+        return listaPrestamo;
+    }
+
+    public void setListaPrestamo(List<Prestamo> listaPrestamo) {
+        this.listaPrestamo = listaPrestamo;
     }
 
     public int getId_libro() {

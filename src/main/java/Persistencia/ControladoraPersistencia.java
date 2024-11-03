@@ -6,6 +6,8 @@ package Persistencia;
 
 import Logica.Estudiante;
 import Logica.Libro;
+import Logica.Pedido_nuevolibro;
+import Logica.Prestamo;
 import Persistencia.exceptions.NonexistentEntityException;
 import java.util.List;
 import java.util.logging.Level;
@@ -19,10 +21,14 @@ public class ControladoraPersistencia {
 
     EstudianteJpaController estuJpa = new EstudianteJpaController();
     LibroJpaController libJpa = new LibroJpaController();
+    Pedido_nuevolibroJpaController pNLJpa = new Pedido_nuevolibroJpaController();
+    PrestamoJpaController prestJpa = new PrestamoJpaController();
 
+    public ControladoraPersistencia() {
+    }
+    
     
     //Estudiante
-    
     //Operacion CREATE
     public void crearEstudiante(Estudiante estu) {
         estuJpa.create(estu);
@@ -57,10 +63,9 @@ public class ControladoraPersistencia {
         }
 
     }
-    
+
     //Libro
-    
-     //Operacion CREATE
+    //Operacion CREATE
     public void crearLibro(Libro Lib) {
         libJpa.create(Lib);
 
@@ -89,6 +94,79 @@ public class ControladoraPersistencia {
     public void editarLibro(Libro estu) {
         try {
             libJpa.edit(estu);
+        } catch (Exception ex) {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    //Pedido Nuevo Libro
+    //Operacion CREATE
+    public void crearPedidoNuevoLibro(Pedido_nuevolibro pNL) {
+        pNLJpa.create(pNL);
+
+    }
+
+    //Operacion READ
+    public List<Pedido_nuevolibro> traerPedidoNuevoLibros() {
+        return pNLJpa.findPedido_nuevolibroEntities();
+    }
+    //Operacion Eliminar
+
+    public void borrarPedidoNuevoLibro(int id_eliminar) {
+        try {
+            pNLJpa.destroy(id_eliminar);
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    //Operacion editar
+
+    public Pedido_nuevolibro traerPedidoNuevoLibro(int id_editar) {
+        return pNLJpa.findPedido_nuevolibro(id_editar);
+    }
+
+    public void editarPedidoNuevoLibro(Pedido_nuevolibro pNL) {
+        try {
+            pNLJpa.edit(pNL);
+        } catch (Exception ex) {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
+    
+    //Prestamo
+    //Operacion CREATE
+    public void crearPrestamo(Prestamo prest) {
+        prestJpa.create(prest);
+
+    }
+
+    //Operacion READ
+    public List<Prestamo> traerPrestamos() {
+        return prestJpa.findPrestamoEntities();
+    }
+    //Operacion Eliminar
+
+    public void borrarPrestamo(int id_eliminar) {
+        try {
+            prestJpa.destroy(id_eliminar);
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    //Operacion editar
+
+    public Prestamo traerPrestamo(int id_editar) {
+        return prestJpa.findPrestamo(id_editar);
+    }
+
+    public void editarPrestamo(Prestamo prest) {
+        try {
+            prestJpa.edit(prest);
         } catch (Exception ex) {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
         }

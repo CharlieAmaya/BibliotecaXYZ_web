@@ -5,16 +5,18 @@
 package Persistencia;
 
 import Logica.Estudiante;
-import Persistencia.exceptions.NonexistentEntityException;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
 import java.io.Serializable;
 import jakarta.persistence.Query;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
-import java.util.List;
+import Logica.Pedido_nuevolibro;
+import Persistencia.exceptions.NonexistentEntityException;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -30,17 +32,34 @@ public class EstudianteJpaController implements Serializable {
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
-
     public EstudianteJpaController() {
         emf = Persistence.createEntityManagerFactory("bibliotecaxyztest");
     }
 
     public void create(Estudiante estudiante) {
+        if (estudiante.getListaPedidosNL() == null) {
+            estudiante.setListaPedidosNL(new ArrayList<Pedido_nuevolibro>());
+        }
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            List<Pedido_nuevolibro> attachedListaPedidosNL = new ArrayList<Pedido_nuevolibro>();
+            for (Pedido_nuevolibro listaPedidosNLPedido_nuevolibroToAttach : estudiante.getListaPedidosNL()) {
+                listaPedidosNLPedido_nuevolibroToAttach = em.getReference(listaPedidosNLPedido_nuevolibroToAttach.getClass(), listaPedidosNLPedido_nuevolibroToAttach.getId_pedidoNuevoLibro());
+                attachedListaPedidosNL.add(listaPedidosNLPedido_nuevolibroToAttach);
+            }
+            estudiante.setListaPedidosNL(attachedListaPedidosNL);
             em.persist(estudiante);
+            for (Pedido_nuevolibro listaPedidosNLPedido_nuevolibro : estudiante.getListaPedidosNL()) {
+                Estudiante oldEstuOfListaPedidosNLPedido_nuevolibro = listaPedidosNLPedido_nuevolibro.getEstu();
+                listaPedidosNLPedido_nuevolibro.setEstu(estudiante);
+                listaPedidosNLPedido_nuevolibro = em.merge(listaPedidosNLPedido_nuevolibro);
+                if (oldEstuOfListaPedidosNLPedido_nuevolibro != null) {
+                    oldEstuOfListaPedidosNLPedido_nuevolibro.getListaPedidosNL().remove(listaPedidosNLPedido_nuevolibro);
+                    oldEstuOfListaPedidosNLPedido_nuevolibro = em.merge(oldEstuOfListaPedidosNLPedido_nuevolibro);
+                }
+            }
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -54,7 +73,34 @@ public class EstudianteJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            Estudiante persistentEstudiante = em.find(Estudiante.class, estudiante.getId_estudiante());
+            List<Pedido_nuevolibro> listaPedidosNLOld = persistentEstudiante.getListaPedidosNL();
+            List<Pedido_nuevolibro> listaPedidosNLNew = estudiante.getListaPedidosNL();
+            List<Pedido_nuevolibro> attachedListaPedidosNLNew = new ArrayList<Pedido_nuevolibro>();
+            for (Pedido_nuevolibro listaPedidosNLNewPedido_nuevolibroToAttach : listaPedidosNLNew) {
+                listaPedidosNLNewPedido_nuevolibroToAttach = em.getReference(listaPedidosNLNewPedido_nuevolibroToAttach.getClass(), listaPedidosNLNewPedido_nuevolibroToAttach.getId_pedidoNuevoLibro());
+                attachedListaPedidosNLNew.add(listaPedidosNLNewPedido_nuevolibroToAttach);
+            }
+            listaPedidosNLNew = attachedListaPedidosNLNew;
+            estudiante.setListaPedidosNL(listaPedidosNLNew);
             estudiante = em.merge(estudiante);
+            for (Pedido_nuevolibro listaPedidosNLOldPedido_nuevolibro : listaPedidosNLOld) {
+                if (!listaPedidosNLNew.contains(listaPedidosNLOldPedido_nuevolibro)) {
+                    listaPedidosNLOldPedido_nuevolibro.setEstu(null);
+                    listaPedidosNLOldPedido_nuevolibro = em.merge(listaPedidosNLOldPedido_nuevolibro);
+                }
+            }
+            for (Pedido_nuevolibro listaPedidosNLNewPedido_nuevolibro : listaPedidosNLNew) {
+                if (!listaPedidosNLOld.contains(listaPedidosNLNewPedido_nuevolibro)) {
+                    Estudiante oldEstuOfListaPedidosNLNewPedido_nuevolibro = listaPedidosNLNewPedido_nuevolibro.getEstu();
+                    listaPedidosNLNewPedido_nuevolibro.setEstu(estudiante);
+                    listaPedidosNLNewPedido_nuevolibro = em.merge(listaPedidosNLNewPedido_nuevolibro);
+                    if (oldEstuOfListaPedidosNLNewPedido_nuevolibro != null && !oldEstuOfListaPedidosNLNewPedido_nuevolibro.equals(estudiante)) {
+                        oldEstuOfListaPedidosNLNewPedido_nuevolibro.getListaPedidosNL().remove(listaPedidosNLNewPedido_nuevolibro);
+                        oldEstuOfListaPedidosNLNewPedido_nuevolibro = em.merge(oldEstuOfListaPedidosNLNewPedido_nuevolibro);
+                    }
+                }
+            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -83,6 +129,11 @@ public class EstudianteJpaController implements Serializable {
                 estudiante.getId_estudiante();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The estudiante with id " + id + " no longer exists.", enfe);
+            }
+            List<Pedido_nuevolibro> listaPedidosNL = estudiante.getListaPedidosNL();
+            for (Pedido_nuevolibro listaPedidosNLPedido_nuevolibro : listaPedidosNL) {
+                listaPedidosNLPedido_nuevolibro.setEstu(null);
+                listaPedidosNLPedido_nuevolibro = em.merge(listaPedidosNLPedido_nuevolibro);
             }
             em.remove(estudiante);
             em.getTransaction().commit();
@@ -138,5 +189,5 @@ public class EstudianteJpaController implements Serializable {
             em.close();
         }
     }
-
+    
 }

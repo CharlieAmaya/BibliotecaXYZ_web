@@ -17,24 +17,56 @@
     </head>
     <body>
         <h1>Lista de Libros</h1>
+        <button onclick="location.href = 'index.jsp'">Menu</button>
         <%
             List<Libro> listaLibro = (List) request.getSession().getAttribute("listaLibro");
             int cont = 1;
             for (Libro lib : listaLibro) {%>
 
-        <p><b>Libro # <%=cont%></b></p>
-        <p>ID : <%=lib.getId_libro()%></p>
-        <p>Nombre : <%=lib.getNombre()%></p>
-        <p>Autor : <%=lib.getAutor()%></p>
-        <p>Idioma : <%=lib.getIdioma()%></p>
-        <p>Genero : <%=lib.getGenero()%></p>
-        <p>Fecha de publicacion : <%=lib.getFecha_publicacion()%></p>
-        <p>Inventario : <%=lib.getInventario()%></p>
-        <p>Editorial : <%=lib.getEditorial()%></p>
-        <p>--------------------------</p>
+        <table style="border: 1px solid black; border-collapse: collapse;"> 
+            <thead> 
+                <tr> 
+                    <th style="border: 1px solid black;">ID</th> 
+                    <th style="border: 1px solid black;">Nombre</th> 
+                    <th style="border: 1px solid black;">Autor</th> 
+                    <th style="border: 1px solid black;">Idioma</th> 
+                    <th style="border: 1px solid black;">Genero</th> 
+                    <th style="border: 1px solid black;">Fecha de Publicación</th> 
+                    <th style="border: 1px solid black;">Inventario</th> 
+                    <th style="border: 1px solid black;">Editorial</th> 
+                    <th style="border: 1px solid black;">Acción</th> 
+                </tr> 
+            </thead> 
+            <tbody> 
+                <tr> 
+                    <td style="border: 1px solid black;"><%=lib.getId_libro()%></td> 
+                    <td style="border: 1px solid black;"><%=lib.getNombre()%></td> 
+                    <td style="border: 1px solid black;"><%=lib.getAutor()%></td> 
+                    <td style="border: 1px solid black;"><%=lib.getIdioma()%></td> 
+                    <td style="border: 1px solid black;"><%=lib.getGenero()%></td> 
+                    <td style="border: 1px solid black;"><%=lib.getFecha_publicacion()%></td> 
+                    <td style="border: 1px solid black;"><%=lib.getInventario()%></td> 
+                    <td style="border: 1px solid black;"><%=lib.getEditorial()%></td>
+
+                    <td style="display:flex; width: 230px">
+                        <form name="eliminar" action="SVEliminar_libro" method="POST">
+                            <button type="submit">Eliminar</button>
+                            <input type="hidden" name="id_libro" value="<%=lib.getId_libro()%>"><!-- Enviar datos a eliminar -->
+                        </form> 
+                        <form name="editar" action="SVEditar_libro" method="GET">
+                            <button type="submit">Editar</button>
+                            <input type="hidden" name="id_libroEdit" value="<%=lib.getId_libro()%>"><!-- Enviar datos a editar -->
+                        </form> 
+                    </td> 
+                </tr> <!-- Agrega más filas aquí -->
+            </tbody>
+        </table>
+
+
+
         <% cont = cont + 1;
             }%>
-        <button onclick="location.href = 'libro.jsp'">Libros</button>
+
 
     </body>
 </html>
