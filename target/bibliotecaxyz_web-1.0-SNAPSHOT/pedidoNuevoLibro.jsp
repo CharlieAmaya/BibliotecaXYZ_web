@@ -1,36 +1,142 @@
-<%-- 
-    Document   : pedidoNuevoLibro
-    Created on : 31/10/2024, 7:58:02 p. m.
-    Author     : amaya
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%-- Document : pedidoNuevoLibro Created on : 31/10/2024, 7:58:02 p. m. Author :
+amaya --%> <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Formulario Pedido nuevo libro</title>
-    </head>
-    <body>
-        <button onclick="location.href = 'index.jsp'">Menu</button>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario Nuevo Libro</title>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <style>
+      /* Estilos generales */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+        color: #333;
+      }
 
-        <h1>Crea un nuevo Pedido</h1>
-        <form action="SVPedidoNuevoLibro" method="POST">
+      /* Estilo del encabezado */
+      header {
+        background-color: #ff8c00; /* Color naranja */
+        padding: 15px;
+        text-align: center;
+        color: white;
+        font-size: 24px;
+      }
 
-            <p><label>Id estudiante</label><input type="text" name="id_estudiante_fk"></p>
-            <p><label>Nombre libro </label><input type="text" name="nombre"></p>
-            <p><label>Autor </label><input type="text" name="autor"></p>
-            <p><label>Estado </label><input type="text" name="estado"></p>
-            <p><label>Fecha de solicitud </label><input type="date" name="fecha_solicitud"></p>
-            <p><label>Editorial </label><input type="text" name="editorial"></p>
-            <button type="submit">Enviar</button>
-        </form>
+      /* Estilo del menú de navegación */
+      nav {
+        background-color: #ff8c00; /* Color naranja */
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+      }
 
-        <h1>Ver datos</h1>
-        <form action="SVPedidoNuevoLibro" method="GET">
+      nav a {
+        color: white;
+        margin: 0 15px;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+      }
 
-            <button type="submit">mostrar datos</button>
-        </form>
+      nav a:hover {
+        text-decoration: underline;
+      }
 
-    </body>
+      /* Estilo de la sección de contenido */
+      main {
+        padding: 20px;
+      }
+
+      /* Estilo del pie de página */
+      footer {
+        background-color: #ff8c00; /* Color naranja */
+        color: white;
+        text-align: center;
+        padding: 10px;
+        position: relative;
+        width: 100%;
+        bottom: 0;
+      }
+      form {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>Biblioteca Virtual</header>
+    <nav>
+      <a href="libro.jsp">Edicion de Libro</a>
+      <a href="estudiante.jsp">Edicion de Estudiantes</a>
+      <a href="index.jsp">Menu Inicio</a>
+      <a href="prestamo.jsp">Solicitar un prestamo de Libros</a>
+    </nav>
+
+    <h1>Crea un nuevo Pedido</h1>
+    <form action="SVPedidoNuevoLibro" method="POST">
+      <div class="mb-3">
+        <label class="form-check-label">Id estudiante</label
+        ><input type="text" name="id_estudiante_fk" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label class="form-check-label">Nombre libro </label
+        ><input type="text" name="nombre" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label class="form-check-label">Autor </label
+        ><input type="text" name="autor" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label class="form-check-label">Estado </label
+        ><input type="text" name="estado" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label class="form-check-label">Fecha de solicitud </label
+        ><input type="date" name="fecha_solicitud" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label class="form-check-label">Editorial </label
+        ><input type="text" name="editorial" class="form-control" />
+      </div>
+      <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+
+    <h1
+      style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      "
+    >
+      Ver datos
+    </h1>
+    <form action="SVPedidoNuevoLibro" method="GET">
+      <button type="submit" class="btn btn-primary">mostrar datos</button>
+    </form>
+    <footer>
+      <p>&copy; 2024 Biblioteca Virtual. Todos los derechos reservados.</p>
+    </footer>
+  </body>
 </html>

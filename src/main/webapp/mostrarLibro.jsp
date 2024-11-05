@@ -10,63 +10,141 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Formulario MOSTRAR</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Datos Libro</title>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"
+        ></script>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+            crossorigin="anonymous"
+            />
+        <style>
+            /* Estilos generales */
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f5f5f5;
+                color: #333;
+            }
+
+            /* Estilo del encabezado */
+            header {
+                background-color: #ff8c00; /* Color naranja */
+                padding: 15px;
+                text-align: center;
+                color: white;
+                font-size: 24px;
+            }
+
+            /* Estilo del menú de navegación */
+            nav {
+                background-color: #ff8c00; /* Color naranja */
+                display: flex;
+                justify-content: center;
+                padding: 10px;
+            }
+
+            nav a {
+                color: white;
+                margin: 0 15px;
+                text-decoration: none;
+                font-size: 16px;
+                font-weight: bold;
+            }
+
+            nav a:hover {
+                text-decoration: underline;
+            }
+
+            /* Estilo de la sección de contenido */
+            main {
+                padding: 20px;
+            }
+
+            /* Estilo del pie de página */
+            footer {
+                background-color: #ff8c00; /* Color naranja */
+                color: white;
+                text-align: center;
+                padding: 10px;
+                position: fixed;
+                width: 100%;
+                bottom: 0;
+            }
+        </style>
     </head>
     <body>
-        <h1>Lista de Libros</h1>
-        <button onclick="location.href = 'index.jsp'">Menu</button>
-        <%
-            List<Libro> listaLibro = (List) request.getSession().getAttribute("listaLibro");
-            int cont = 1;
-            for (Libro lib : listaLibro) {%>
+        <header>Biblioteca Virtual</header>
+        <nav>
+            <a href="index.jsp">Menu Inicio</a>
+            <a href="estudiante.jsp">Edicion de Estudiantes</a>
+            <a href="pedidoNuevoLibro.jsp">Solicitar Libros Nuevos</a>
+            <a href="prestamo.jsp">Solicitar un prestamo de Libros</a>
+        </nav>
 
-        <table style="border: 1px solid black; border-collapse: collapse;"> 
+
+        <h1>Lista de Libros</h1>
+      
+
+        <table class="table table-striped"> 
             <thead> 
                 <tr> 
-                    <th style="border: 1px solid black;">ID</th> 
-                    <th style="border: 1px solid black;">Nombre</th> 
-                    <th style="border: 1px solid black;">Autor</th> 
-                    <th style="border: 1px solid black;">Idioma</th> 
-                    <th style="border: 1px solid black;">Genero</th> 
-                    <th style="border: 1px solid black;">Fecha de Publicación</th> 
-                    <th style="border: 1px solid black;">Inventario</th> 
-                    <th style="border: 1px solid black;">Editorial</th> 
-                    <th style="border: 1px solid black;">Acción</th> 
+                    <th scope="col">ID</th> 
+                    <th scope="col">Nombre</th> 
+                    <th scope="col">Autor</th> 
+                    <th scope="col">Idioma</th> 
+                    <th scope="col">Genero</th> 
+                    <th scope="col">Fecha de Publicación</th> 
+                    <th scope="col">Inventario</th> 
+                    <th scope="col">Editorial</th> 
+                    <th scope="col">Acción</th> 
                 </tr> 
-            </thead> 
-            <tbody> 
-                <tr> 
-                    <td style="border: 1px solid black;"><%=lib.getId_libro()%></td> 
-                    <td style="border: 1px solid black;"><%=lib.getNombre()%></td> 
-                    <td style="border: 1px solid black;"><%=lib.getAutor()%></td> 
-                    <td style="border: 1px solid black;"><%=lib.getIdioma()%></td> 
-                    <td style="border: 1px solid black;"><%=lib.getGenero()%></td> 
-                    <td style="border: 1px solid black;"><%=lib.getFecha_publicacion()%></td> 
-                    <td style="border: 1px solid black;"><%=lib.getInventario()%></td> 
-                    <td style="border: 1px solid black;"><%=lib.getEditorial()%></td>
+            </thead>
 
-                    <td style="display:flex; width: 230px">
-                        <form name="eliminar" action="SVEliminar_libro" method="POST">
-                            <button type="submit">Eliminar</button>
-                            <input type="hidden" name="id_libro" value="<%=lib.getId_libro()%>"><!-- Enviar datos a eliminar -->
-                        </form> 
-                        <form name="editar" action="SVEditar_libro" method="GET">
-                            <button type="submit">Editar</button>
-                            <input type="hidden" name="id_libroEdit" value="<%=lib.getId_libro()%>"><!-- Enviar datos a editar -->
-                        </form> 
+            <tbody class="table-group-divider"> 
+                <%
+                    List<Libro> listaLibro = (List) request.getSession().getAttribute("listaLibro");
+                    int cont = 1;
+                    for (Libro lib : listaLibro) {%>
+                <tr> 
+                    <td scope="row"><%=lib.getId_libro()%></td> 
+                    <td ><%=lib.getNombre()%></td> 
+                    <td ><%=lib.getAutor()%></td> 
+                    <td ><%=lib.getIdioma()%></td> 
+                    <td ><%=lib.getGenero()%></td> 
+                    <td ><%=lib.getFecha_publicacion()%></td> 
+                    <td ><%=lib.getInventario()%></td> 
+                    <td ><%=lib.getEditorial()%></td>
+
+                    <td style="display:flex; width: 200px">
+                        <div class="btn-group" role="group">
+                            <form name="eliminar" action="SVEliminar_libro" method="POST">
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                                <input type="hidden" name="id_libro" value="<%=lib.getId_libro()%>"><!-- Enviar datos a eliminar -->
+                            </form> 
+                            <form name="editar" action="SVEditar_libro" method="GET">
+                                <button type="submit" class="btn btn-warning">Editar</button>
+                                <input type="hidden" name="id_libroEdit" value="<%=lib.getId_libro()%>"><!-- Enviar datos a editar -->
+                            </form>
+                        </div> 
                     </td> 
                 </tr> <!-- Agrega más filas aquí -->
+
+                <% cont = cont + 1;
+                    }%>
             </tbody>
         </table>
-
-
-
-        <% cont = cont + 1;
-            }%>
-
-
+        <footer>
+            <p>&copy; 2024 Biblioteca Virtual. Todos los derechos reservados.</p>
+        </footer>
     </body>
+
 </html>
