@@ -5,6 +5,7 @@
 package Logica;
 
 import Persistencia.ControladoraPersistencia;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,7 +17,6 @@ public class Controladora {
     ControladoraPersistencia controlPersis = new ControladoraPersistencia();
 
     // Estudiante
-    
     public void crearEstudiante(Estudiante estu) {
         controlPersis.crearEstudiante(estu);
     }
@@ -31,17 +31,58 @@ public class Controladora {
 
     public Estudiante traerEstudiante_s(int id_editar) {
         return controlPersis.traerEstudiante_s(id_editar);
-        
+
     }
 
     public void editarEstudiante(Estudiante estu) {
-    controlPersis.editarEstudiante (estu); 
-    
+        controlPersis.editarEstudiante(estu);
+
     }
 
-    
+// Usuarios
+    public void crearUsuario(Usuario usu) {
+        controlPersis.crearUsuario(usu);
+    }
+
+    public List<Usuario> traerusuUsuarios() {
+        return controlPersis.traerUsuarios();
+    }
+
+    public void borrarUsuario(int id_eliminar) {
+        controlPersis.borrarUsuario(id_eliminar);
+    }
+
+    public Usuario traerUsuario(int id_editar) {
+        return controlPersis.traerUsuario(id_editar);
+
+    }
+
+    public void editarUsuario(Usuario usu) {
+        controlPersis.editarUsuario(usu);
+
+    }
+
+    public boolean comprobarIngreso(String usuario, String contrasena) {
+
+        boolean ingreso = false;
+
+        List<Usuario> listaUsuarios = new ArrayList<Usuario>();
+        listaUsuarios = controlPersis.traerUsuarios();
+
+        for (Usuario usu : listaUsuarios) {
+            if (usu.getUsuario().equals(usuario)) {
+                if (usu.getContrasenia().equals(contrasena)) {
+                    ingreso = true;
+                } else {
+                    ingreso = false;
+                }
+            }
+        }
+        return ingreso;
+
+    }
+
     // Libro
-    
     public void crearLibro(Libro Lib) {
         controlPersis.crearLibro(Lib);
     }
@@ -56,16 +97,15 @@ public class Controladora {
 
     public Libro traerLibro(int id_editar) {
         return controlPersis.traerLibro(id_editar);
-        
+
     }
 
     public void editarLibro(Libro Lib) {
-    controlPersis.editarLibro (Lib); 
-    
+        controlPersis.editarLibro(Lib);
+
     }
-    
+
     // Pedido Nuevo Libro
-    
     public void crearPedidoNuevoLibro(Pedido_nuevolibro pNL) {
         controlPersis.crearPedidoNuevoLibro(pNL);
     }
@@ -80,15 +120,15 @@ public class Controladora {
 
     public Pedido_nuevolibro traerPedidoNuevoLibro(int id_editar) {
         return controlPersis.traerPedidoNuevoLibro(id_editar);
-        
+
     }
 
     public void editarPedidoNuevoLibro(Pedido_nuevolibro pNL) {
-    controlPersis.editarPedidoNuevoLibro(pNL); 
-    
+        controlPersis.editarPedidoNuevoLibro(pNL);
+
     }
 // Prestamo
-    
+
     public void crearPrestamo(Prestamo prest) {
         controlPersis.crearPrestamo(prest);
     }
@@ -103,12 +143,12 @@ public class Controladora {
 
     public Prestamo traerPrestamo(int id_editar) {
         return controlPersis.traerPrestamo(id_editar);
-        
+
     }
 
     public void editarPrestamo(Prestamo prest) {
-    controlPersis.editarPrestamo(prest);
-    
+        controlPersis.editarPrestamo(prest);
+
     }
-    
+
 }

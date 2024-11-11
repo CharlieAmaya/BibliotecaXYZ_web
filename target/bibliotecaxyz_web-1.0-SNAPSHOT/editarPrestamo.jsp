@@ -87,6 +87,14 @@ contentType="text/html" pageEncoding="UTF-8"%>
   </head>
 
   <body>
+       <!-- Validacion-->
+        <% HttpSession misession = request.getSession();
+            String usuario = (String) request.getSession().getAttribute("usuario");
+            if (usuario == null) {
+            response.sendRedirect("sinlogin.jsp");
+            }
+
+        %>
     <header>Biblioteca Virtual</header>
     <nav>
       <a href="libro.jsp">Edicion de Libro</a>

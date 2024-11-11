@@ -5,6 +5,7 @@
 package Persistencia;
 
 import Logica.Estudiante;
+import Logica.Usuario;
 import Logica.Libro;
 import Logica.Pedido_nuevolibro;
 import Logica.Prestamo;
@@ -20,6 +21,7 @@ import java.util.logging.Logger;
 public class ControladoraPersistencia {
 
     EstudianteJpaController estuJpa = new EstudianteJpaController();
+    UsuarioJpaController usuJpa = new UsuarioJpaController();
     LibroJpaController libJpa = new LibroJpaController();
     Pedido_nuevolibroJpaController pNLJpa = new Pedido_nuevolibroJpaController();
     PrestamoJpaController prestJpa = new PrestamoJpaController();
@@ -58,6 +60,42 @@ public class ControladoraPersistencia {
     public void editarEstudiante(Estudiante estu) {
         try {
             estuJpa.edit(estu);
+        } catch (Exception ex) {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
+    //Usuarios
+    //Operacion CREATE
+    public void crearUsuario (Usuario usu) {
+        usuJpa.create(usu);
+
+    }
+
+    //Operacion READ
+    public List<Usuario> traerUsuarios() {
+        return usuJpa.findUsuarioEntities();
+    }
+    //Operacion Eliminar
+
+    public void borrarUsuario(int id_eliminar) {
+        try {
+            usuJpa.destroy(id_eliminar);
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    //Operacion editar
+
+    public Usuario traerUsuario (int id_editar) {
+        return usuJpa.findUsuario(id_editar);
+    }
+
+    public void editarUsuario(Usuario usu) {
+        try {
+            usuJpa.edit(usu);
         } catch (Exception ex) {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
         }

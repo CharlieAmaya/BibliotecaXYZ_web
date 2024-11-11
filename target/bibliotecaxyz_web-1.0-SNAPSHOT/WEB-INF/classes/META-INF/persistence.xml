@@ -11,6 +11,7 @@
     <class>Logica.Libro</class>
     <class>Logica.Pedido_nuevolibro</class>
     <class>Logica.Prestamo</class>
+    <class>Logica.Usuario</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/bibliotecaxyz?serverTimezone=UTC"/>

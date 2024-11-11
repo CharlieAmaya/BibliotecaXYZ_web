@@ -6,13 +6,16 @@ Logica\Pedido_nuevolibro.class
 Logica\exceptions\NonexistentEntityException.class
 servlets\SVLibro.class
 Logica\exceptions\IllegalOrphanException.class
+servlets\SVLogin.class
 Persistencia\ControladoraPersistencia.class
 Logica\Prestamo.class
 servlets\SVEliminar_Estudiante.class
 Persistencia\Pedido_nuevolibroJpaController.class
+Persistencia\UsuarioJpaController.class
 Persistencia\LibroJpaController.class
 servlets\SVEstudiantes.class
 Logica\Estudiante.class
+Logica\Usuario.class
 servlets\SVEditar_Prestamo.class
 com\mycompany\bibliotecaxyz_web\resources\JakartaEE11Resource.class
 servlets\SVPrestamo.class

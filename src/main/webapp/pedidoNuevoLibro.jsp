@@ -85,6 +85,14 @@ amaya --%> <%@page contentType="text/html" pageEncoding="UTF-8"%>
   </head>
 
   <body>
+       <!-- Validacion-->
+        <% HttpSession misession = request.getSession();
+            String usuario = (String) request.getSession().getAttribute("usuario");
+            if (usuario == null) {
+            response.sendRedirect("sinlogin.jsp");
+            }
+
+        %>
     <header>Biblioteca Virtual</header>
     <nav>
       <a href="libro.jsp">Edicion de Libro</a>
@@ -92,7 +100,7 @@ amaya --%> <%@page contentType="text/html" pageEncoding="UTF-8"%>
       <a href="index.jsp">Menu Inicio</a>
       <a href="prestamo.jsp">Solicitar un prestamo de Libros</a>
     </nav>
-
+<!-- Formulario para solicitar un libro nuevo -->
     <h1>Crea un nuevo Pedido</h1>
     <form action="SVPedidoNuevoLibro" method="POST">
       <div class="mb-3">

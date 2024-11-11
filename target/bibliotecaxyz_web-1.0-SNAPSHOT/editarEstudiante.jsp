@@ -73,6 +73,7 @@ pageEncoding="UTF-8"%>
         width: 100%;
         bottom: 0;
       }
+       /* Estilo del formulario*/
       form {
         background-color: white;
         padding: 20px;
@@ -85,6 +86,14 @@ pageEncoding="UTF-8"%>
     </style>
   </head>
   <body>
+       <!-- Validacion-->
+        <% HttpSession misession = request.getSession();
+            String usuario = (String) request.getSession().getAttribute("usuario");
+            if (usuario == null) {
+            response.sendRedirect("sinlogin.jsp");
+            }
+
+        %>
     <header>Biblioteca Virtual</header>
     <nav>
       <a href="libro.jsp">Edicion de Libro</a>

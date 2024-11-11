@@ -8,6 +8,7 @@ E:\Recover\oooo\Documentos\Documentos\Analisis y desarrollo del software SENA\Fa
 E:\Recover\oooo\Documentos\Documentos\Analisis y desarrollo del software SENA\Fase 3\bibliotecaxyz_web\src\main\java\Logica\Libro.java
 E:\Recover\oooo\Documentos\Documentos\Analisis y desarrollo del software SENA\Fase 3\bibliotecaxyz_web\src\main\java\Logica\Pedido_nuevolibro.java
 E:\Recover\oooo\Documentos\Documentos\Analisis y desarrollo del software SENA\Fase 3\bibliotecaxyz_web\src\main\java\Logica\Prestamo.java
+E:\Recover\oooo\Documentos\Documentos\Analisis y desarrollo del software SENA\Fase 3\bibliotecaxyz_web\src\main\java\Logica\Usuario.java
 E:\Recover\oooo\Documentos\Documentos\Analisis y desarrollo del software SENA\Fase 3\bibliotecaxyz_web\src\main\java\Persistencia\ControladoraPersistencia.java
 E:\Recover\oooo\Documentos\Documentos\Analisis y desarrollo del software SENA\Fase 3\bibliotecaxyz_web\src\main\java\Persistencia\EstudianteJpaController.java
 E:\Recover\oooo\Documentos\Documentos\Analisis y desarrollo del software SENA\Fase 3\bibliotecaxyz_web\src\main\java\Persistencia\exceptions\IllegalOrphanException.java
@@ -16,6 +17,7 @@ E:\Recover\oooo\Documentos\Documentos\Analisis y desarrollo del software SENA\Fa
 E:\Recover\oooo\Documentos\Documentos\Analisis y desarrollo del software SENA\Fase 3\bibliotecaxyz_web\src\main\java\Persistencia\LibroJpaController.java
 E:\Recover\oooo\Documentos\Documentos\Analisis y desarrollo del software SENA\Fase 3\bibliotecaxyz_web\src\main\java\Persistencia\Pedido_nuevolibroJpaController.java
 E:\Recover\oooo\Documentos\Documentos\Analisis y desarrollo del software SENA\Fase 3\bibliotecaxyz_web\src\main\java\Persistencia\PrestamoJpaController.java
+E:\Recover\oooo\Documentos\Documentos\Analisis y desarrollo del software SENA\Fase 3\bibliotecaxyz_web\src\main\java\Persistencia\UsuarioJpaController.java
 E:\Recover\oooo\Documentos\Documentos\Analisis y desarrollo del software SENA\Fase 3\bibliotecaxyz_web\src\main\java\servlets\SVEditar_Estudiante.java
 E:\Recover\oooo\Documentos\Documentos\Analisis y desarrollo del software SENA\Fase 3\bibliotecaxyz_web\src\main\java\servlets\SVEditar_libro.java
 E:\Recover\oooo\Documentos\Documentos\Analisis y desarrollo del software SENA\Fase 3\bibliotecaxyz_web\src\main\java\servlets\SVEditar_PedidoNuevoLibro.java
@@ -26,5 +28,6 @@ E:\Recover\oooo\Documentos\Documentos\Analisis y desarrollo del software SENA\Fa
 E:\Recover\oooo\Documentos\Documentos\Analisis y desarrollo del software SENA\Fase 3\bibliotecaxyz_web\src\main\java\servlets\SVEliminar_Prestamo.java
 E:\Recover\oooo\Documentos\Documentos\Analisis y desarrollo del software SENA\Fase 3\bibliotecaxyz_web\src\main\java\servlets\SVEstudiantes.java
 E:\Recover\oooo\Documentos\Documentos\Analisis y desarrollo del software SENA\Fase 3\bibliotecaxyz_web\src\main\java\servlets\SVLibro.java
+E:\Recover\oooo\Documentos\Documentos\Analisis y desarrollo del software SENA\Fase 3\bibliotecaxyz_web\src\main\java\servlets\SVLogin.java
 E:\Recover\oooo\Documentos\Documentos\Analisis y desarrollo del software SENA\Fase 3\bibliotecaxyz_web\src\main\java\servlets\SVPedidoNuevoLibro.java
 E:\Recover\oooo\Documentos\Documentos\Analisis y desarrollo del software SENA\Fase 3\bibliotecaxyz_web\src\main\java\servlets\SVPrestamo.java
